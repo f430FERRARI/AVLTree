@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A4A087C01BEC3D04000F0C75 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A087BF1BEC3D04000F0C75 /* main.cpp */; };
+		A4A087C01BEC3D04000F0C75 /* BinarySearchTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A087BF1BEC3D04000F0C75 /* BinarySearchTree.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		A4A087BC1BEC3D04000F0C75 /* BinarySearchTree */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BinarySearchTree; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4A087BF1BEC3D04000F0C75 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A4A087BF1BEC3D04000F0C75 /* BinarySearchTree.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BinarySearchTree.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +57,7 @@
 		A4A087BE1BEC3D04000F0C75 /* BinarySearchTree */ = {
 			isa = PBXGroup;
 			children = (
-				A4A087BF1BEC3D04000F0C75 /* main.cpp */,
+				A4A087BF1BEC3D04000F0C75 /* BinarySearchTree.cpp */,
 			);
 			path = BinarySearchTree;
 			sourceTree = "<group>";
@@ -118,7 +118,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4A087C01BEC3D04000F0C75 /* main.cpp in Sources */,
+				A4A087C01BEC3D04000F0C75 /* BinarySearchTree.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
