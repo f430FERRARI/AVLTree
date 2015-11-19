@@ -1,41 +1,13 @@
-#include <iostream> 
+#include <iostream>  
+#include "BinarySearchTree.h"
+using namespace std;
 
-template<class T>
-struct TreeNode {
-    T data;             //Should this just be a reference to the data object?
-    int height;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode* parent;
-};
+template <class T>
+TreeNode<T>* AVLTree<T>::getRoot(){
+    return root;
+}
 
-template<class T>
-class AVLTree {
-    private:
-        TreeNode<T>* root;
-        void removeLeaf(TreeNode<T>*);
-        void removeLeft(TreeNode<T>*);
-        void removeRight(TreeNode<T>*);
-        void removeBoth(TreeNode<T>*);
-        void adder(TreeNode<T>*, TreeNode<T>*);
-        int getHeight(TreeNode<T>*);
-        void rotateRight(TreeNode<T>*);
-        void rotateLeft(TreeNode<T>*);
-    public:
-        TreeNode<T>* getNode(T obj, TreeNode<T>*);
-        void insert(T obj);
-        T* readMinNode();
-        T* popMinNode();
-        void remove(T obj);   //TODO: Different name from the specification
-        void balance(TreeNode<T>*);
-    
-        AVLTree() {
-            root = NULL;
-        }
-};
-
-
-template <class T>              //This may require an additions parameter
+template <class T>              
 TreeNode<T>* AVLTree<T>::getNode(T obj, TreeNode<T>* currentNode){
     if(currentNode == NULL) {
         return NULL;
@@ -238,7 +210,6 @@ void AVLTree<T>::balance(TreeNode<T>* nodeToBalance) {
     }
     
     balance(nodeToBalance->parent);
-    
 }
 
 
@@ -284,7 +255,6 @@ void AVLTree<T>::rotateRight(TreeNode<T>* nodeToRotate) {
     } else {
         nodeToRotate->height = rightHeight + 1;
     }
-    
 }
 
 template <class T>
@@ -320,10 +290,10 @@ void AVLTree<T>::rotateLeft(TreeNode<T>* nodeToRotate) {
     } else {
         nodeToRotate->height = rightHeight + 1;
     }
-    
 }
 
-int main(int argc, const char * argv[]) {
+/*
+int main() {
     AVLTree<int> tree;
     
     tree.insert(1);
@@ -333,23 +303,9 @@ int main(int argc, const char * argv[]) {
     tree.insert(5);
     tree.insert(6);
     
-    int* min = tree.readMinNode();
-    int* min2 = tree.popMinNode();
-    
     tree.remove(1);
     tree.remove(2);
     tree.remove(5);
-    
-    /*tree.insert(17);
-    tree.insert(21);
-    tree.insert(6);
-    tree.insert(1);
-    tree.insert(7);
-    tree.insert(2);
-    tree.insert(19);
-    tree.insert(34);
-    tree.remove(19);
-    tree.remove(1);
-    tree.remove(17);*/
-    std::cout<<"Finish";
-}
+
+    return 0;
+} */
