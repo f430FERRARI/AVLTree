@@ -6,17 +6,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BinarySearchTree/Runner.cpp"
-            timestampString = "469663009.900648"
+            filePath = "BinarySearchTree/BinarySearchTreeTests.cpp"
+            timestampString = "470297010.019995"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12"
-            landmarkName = "main()"
-            landmarkType = "7">
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "BinarySearchTreeTests::bigTreeTest()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -25,12 +25,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BinarySearchTree/BinarySearchTreeTests.cpp"
-            timestampString = "469665415.34576"
+            filePath = "BinarySearchTree/BinarySearchTreeTests.cc"
+            timestampString = "470297286.782209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "BinarySearchTreeTests::bigTreeTest()"
             landmarkType = "5">
          </BreakpointContent>

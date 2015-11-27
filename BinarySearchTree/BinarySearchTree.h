@@ -1,84 +1,85 @@
 #ifndef BinarySearchTree_h
 #define BinarySearchTree_h
 
-template<class T>
+template<class T, class S>
 struct TreeNode {
-    T data;
+    T* obj;
+    S data;
     int height;
     TreeNode* left;
     TreeNode* right;
     TreeNode* parent;
 };
 
-template<class T>
+template<class T, class S>
 class AVLTree {
 private:
-    TreeNode<T>* root;
-    void removeLeaf(TreeNode<T>*);
-    void removeLeft(TreeNode<T>*);
-    void removeRight(TreeNode<T>*);
-    void removeBoth(TreeNode<T>*);
-    void adder(TreeNode<T>*, TreeNode<T>*);
-    int getHeight(TreeNode<T>*);
-    void rotateRight(TreeNode<T>*);
-    void rotateLeft(TreeNode<T>*);
+    TreeNode<T,S>* root;
+    void removeLeaf(TreeNode<T,S>*);
+    void removeLeft(TreeNode<T,S>*);
+    void removeRight(TreeNode<T,S>*);
+    void removeBoth(TreeNode<T,S>*);
+    void adder(TreeNode<T,S>*, TreeNode<T,S>*);
+    int getHeight(TreeNode<T,S>*);
+    void rotateRight(TreeNode<T,S>*);
+    void rotateLeft(TreeNode<T,S>*);
 public:
-    TreeNode<T>* getRoot();
-    TreeNode<T>* getNode(T obj, TreeNode<T>*);
-    void insert(T obj);
+    TreeNode<T,S>* getRoot();
+    TreeNode<T,S>* getNode(T*, S, TreeNode<T,S>*);
+    void insert(T*, S);
     T* readMinNode();
     T* popMinNode();
-    void remove(T obj);
-    void balance(TreeNode<T>*);
+    void remove(T*, S);
+    void balance(TreeNode<T,S>*);
     
     AVLTree() {
         root = NULL;
     }
 };
 
-
-template <class T>
-TreeNode<T>* AVLTree<T>::getRoot(){
+template <class T, class S>
+TreeNode<T,S>* AVLTree<T,S>::getRoot(){
     return root;
 }
 
-template <class T>
-TreeNode<T>* AVLTree<T>::getNode(T obj, TreeNode<T>* currentNode){
+template <class T, class S>
+TreeNode<T,S>* AVLTree<T,S>::getNode(T* objectToFind, S data, TreeNode<T,S>* currentNode){
     if(currentNode == NULL) {
         return NULL;
-    } else if (currentNode->data == obj) {
+    } else if (currentNode->obj == objectToFind) {
         return currentNode;
-    } else if (obj < currentNode->data){
-        return getNode(obj, currentNode->left);
+    } else if (data < currentNode->data){
+        return getNode(objectToFind, data, currentNode->left);
     } else {
-        return getNode(obj, currentNode->right);
+        return getNode(objectToFind, data, currentNode->right);
     }
 }
 
-template <class T>
-T* AVLTree<T>::readMinNode() {
-    TreeNode<T>* currentNode = root;
+template <class T, class S>
+T* AVLTree<T,S>::readMinNode() {
+    TreeNode<T,S>* currentNode = root;
     while (currentNode->left != NULL) {
         currentNode = currentNode->left;
     }
-    return &(currentNode->data);       //This right? i get address of node
+    return currentNode->obj;
 }
 
-template <class T>
-T* AVLTree<T>::popMinNode() {
-    TreeNode<T>* currentNode = root;
+template <class T, class S>
+T* AVLTree<T,S>::popMinNode() {
+    TreeNode<T,S>* currentNode = root;
     while (currentNode->left != NULL) {
         currentNode = currentNode->left;
     }
-    T* data = &(currentNode->data);               //This right? i get address of node
-    remove(currentNode->data);          //This right?
-    return data;
+    T* output = currentNode->obj;
+    remove(currentNode->obj, currentNode->data);
+    return output;
 }
 
-template <class T>
-void AVLTree<T>::insert(T obj) {
-    TreeNode<T>* nodeToInsert = new TreeNode<T>();
-    nodeToInsert->data = obj;
+template <class T, class S>
+void AVLTree<T,S>::insert(T* obj, S data) {
+    TreeNode<T,S>* nodeToInsert = new TreeNode<T,S>();
+    nodeToInsert->obj = obj;
+    nodeToInsert->data = data;
     nodeToInsert->left = nodeToInsert->right = NULL;
     
     if (root == NULL){
@@ -90,10 +91,9 @@ void AVLTree<T>::insert(T obj) {
     balance(nodeToInsert);
 }
 
-
-template <class T>                      //Is this necessary?
-void AVLTree<T>::adder(TreeNode<T>* nodeToInsert, TreeNode<T>* currentNode) {
-    if (nodeToInsert->data <= currentNode->data) {              //Comparisons may require different method
+template <class T, class S>
+void AVLTree<T,S>::adder(TreeNode<T,S>* nodeToInsert, TreeNode<T,S>* currentNode) {
+    if (nodeToInsert->data <= currentNode->data) {
         if (currentNode->left == NULL) {
             currentNode->left = nodeToInsert;
             nodeToInsert->parent = currentNode;
@@ -110,10 +110,9 @@ void AVLTree<T>::adder(TreeNode<T>* nodeToInsert, TreeNode<T>* currentNode) {
     }
 }
 
-
-template <class T>
-void AVLTree<T>::remove(T obj) {
-    TreeNode<T>* nodeToRemove = getNode(obj, root);
+template <class T, class S>
+void AVLTree<T,S>::remove(T* obj, S data) {
+    TreeNode<T,S>* nodeToRemove = getNode(obj, data, root);
     if (nodeToRemove == NULL) {
         return;
     }
@@ -131,8 +130,8 @@ void AVLTree<T>::remove(T obj) {
     balance(nodeToRemove->parent);
 }
 
-template <class T>
-void AVLTree<T>::removeLeaf(TreeNode<T>* nodeToRemove) {
+template <class T, class S>
+void AVLTree<T,S>::removeLeaf(TreeNode<T,S>* nodeToRemove) {
     if (nodeToRemove->parent == NULL) {
         root = NULL;
     } else if (nodeToRemove == nodeToRemove->parent->right) {
@@ -145,8 +144,8 @@ void AVLTree<T>::removeLeaf(TreeNode<T>* nodeToRemove) {
 }
 
 
-template <class T>
-void AVLTree<T>::removeRight(TreeNode<T>* nodeToRemove) {
+template <class T, class S>
+void AVLTree<T,S>::removeRight(TreeNode<T,S>* nodeToRemove) {
     if (nodeToRemove->parent == NULL) {
         root = nodeToRemove->right;
         nodeToRemove->right->parent = NULL;
@@ -162,8 +161,8 @@ void AVLTree<T>::removeRight(TreeNode<T>* nodeToRemove) {
 }
 
 
-template <class T>
-void AVLTree<T>::removeLeft(TreeNode<T>* nodeToRemove) {
+template <class T, class S>
+void AVLTree<T,S>::removeLeft(TreeNode<T,S>* nodeToRemove) {
     if (nodeToRemove->parent == NULL) {
         root = nodeToRemove->left;
         nodeToRemove->left->parent = NULL;
@@ -178,11 +177,11 @@ void AVLTree<T>::removeLeft(TreeNode<T>* nodeToRemove) {
     delete nodeToRemove;
 }
 
-
-template <class T>
-void AVLTree<T>::removeBoth(TreeNode<T>* nodeToRemove) {
+//TODO: !!!!!!!!
+template <class T, class S>
+void AVLTree<T,S>::removeBoth(TreeNode<T,S>* nodeToRemove) {
     //Find a valid node to swap with the node to remove
-    TreeNode<T>* replacement = nodeToRemove->left;
+    TreeNode<T,S>* replacement = nodeToRemove->left;
     while (replacement->right != NULL) {
         replacement = replacement->right;
     }
@@ -205,8 +204,8 @@ void AVLTree<T>::removeBoth(TreeNode<T>* nodeToRemove) {
 }
 
 
-template <class T>
-void AVLTree<T>::balance(TreeNode<T>* nodeToBalance) {
+template <class T, class S>
+void AVLTree<T,S>::balance(TreeNode<T,S>* nodeToBalance) {
     //End function when it has gone above the parent
     if (nodeToBalance == NULL) {
         return;
@@ -248,8 +247,8 @@ void AVLTree<T>::balance(TreeNode<T>* nodeToBalance) {
 }
 
 
-template <class T>
-int AVLTree<T>::getHeight(TreeNode<T>* node) {
+template <class T, class S>
+int AVLTree<T,S>::getHeight(TreeNode<T,S>* node) {
     if (node == NULL) {
         return 0;
     } else {
@@ -257,10 +256,10 @@ int AVLTree<T>::getHeight(TreeNode<T>* node) {
     }
 }
 
-template <class T>
-void AVLTree<T>::rotateRight(TreeNode<T>* nodeToRotate) {
+template <class T, class S>
+void AVLTree<T,S>::rotateRight(TreeNode<T,S>* nodeToRotate) {
     //Place new root into a temporary node
-    TreeNode<T>* updatedRoot = nodeToRotate->left;
+    TreeNode<T,S>* updatedRoot = nodeToRotate->left;
     nodeToRotate->left->parent = nodeToRotate->parent;
     
     if (nodeToRotate->parent == NULL) {
@@ -292,10 +291,10 @@ void AVLTree<T>::rotateRight(TreeNode<T>* nodeToRotate) {
     }
 }
 
-template <class T>
-void AVLTree<T>::rotateLeft(TreeNode<T>* nodeToRotate) {
+template <class T, class S>
+void AVLTree<T,S>::rotateLeft(TreeNode<T,S>* nodeToRotate) {
     //Place new root into a temporary node
-    TreeNode<T>* updatedRoot = nodeToRotate->right;
+    TreeNode<T,S>* updatedRoot = nodeToRotate->right;
     nodeToRotate->right->parent = nodeToRotate->parent;
     
     if (nodeToRotate->parent == NULL) {
