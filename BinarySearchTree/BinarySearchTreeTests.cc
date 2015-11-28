@@ -10,14 +10,14 @@ using namespace std;
  */
 bool BinarySearchTreeTests::readMinNodeTest() {
     AVLTree<TestThread, int> testTree;
-    TestThread* one = new TestThread(1,1);
-    TestThread* two = new TestThread(2,2);
-    TestThread* three = new TestThread(3,3);
+    TestThread one (1,1);
+    TestThread two (2,2);
+    TestThread three (3,3);
 
-    testTree.insert(one,1);
-    testTree.insert(two,2);
-    testTree.insert(three,3);
-    return testTree.readMinNode() == one;
+    testTree.insert(&one,1);
+    testTree.insert(&two,2);
+    testTree.insert(&three,3);
+    return testTree.readMinNode() == &one;
 }
 
 /*
@@ -25,15 +25,15 @@ bool BinarySearchTreeTests::readMinNodeTest() {
  */
 bool BinarySearchTreeTests::popMinNodeTest() {
     AVLTree<TestThread, int> testTree;
-    TestThread* one = new TestThread(1,1);
-    TestThread* two = new TestThread(2,2);
-    TestThread* three = new TestThread(3,3);
+    TestThread one (1,1);
+    TestThread two (2,2);
+    TestThread three (3,3);
     
-    testTree.insert(one,1);
-    testTree.insert(two,2);
-    testTree.insert(three,3);
+    testTree.insert(&one,1);
+    testTree.insert(&two,2);
+    testTree.insert(&three,3);
     TestThread* popped = testTree.popMinNode();
-    return ((popped = one) && (testTree.readMinNode() == two));
+    return ((popped = &one) && (testTree.readMinNode() == &two));
 }
 
 /*
@@ -41,13 +41,13 @@ bool BinarySearchTreeTests::popMinNodeTest() {
  */
 bool BinarySearchTreeTests::rightZigZagTest() {
     AVLTree<TestThread, int> testTree;
-    TestThread* three = new TestThread(3,3);
-    TestThread* six = new TestThread(6,6);
-    TestThread* five = new TestThread(5,5);
+    TestThread three (3,3);
+    TestThread six (6,6);
+    TestThread five (5,5);
 
-    testTree.insert(three,3);
-    testTree.insert(six,6);
-    testTree.insert(five,5);
+    testTree.insert(&three,3);
+    testTree.insert(&six,6);
+    testTree.insert(&five,5);
     return ((testTree.getRoot()->height == 2) && (testTree.getRoot()->data == 5));
 }
 
@@ -56,13 +56,13 @@ bool BinarySearchTreeTests::rightZigZagTest() {
  */
 bool BinarySearchTreeTests::rightZigZigTest(){
     AVLTree<TestThread, int> testTree;
-    TestThread* three = new TestThread(3,3);
-    TestThread* six= new TestThread(6,6);
-    TestThread* nine = new TestThread(9,9);
+    TestThread three (3,3);
+    TestThread six(6,6);
+    TestThread nine (9,9);
 
-    testTree.insert(three,3);
-    testTree.insert(six,6);
-    testTree.insert(nine,9);
+    testTree.insert(&three,3);
+    testTree.insert(&six,6);
+    testTree.insert(&nine,9);
     return ((testTree.getRoot()->height == 2) && (testTree.getRoot()->data == 6));
     
 }
@@ -72,13 +72,13 @@ bool BinarySearchTreeTests::rightZigZigTest(){
  */
 bool BinarySearchTreeTests::leftZigZagTest() {
     AVLTree<TestThread, int> testTree;
-    TestThread* six = new TestThread(6,6);
-    TestThread* three = new TestThread(3,3);
-    TestThread* five = new TestThread(5,5);
+    TestThread six (6,6);
+    TestThread three (3,3);
+    TestThread five (5,5);
     
-    testTree.insert(six,6);
-    testTree.insert(three,3);
-    testTree.insert(five,5);
+    testTree.insert(&six,6);
+    testTree.insert(&three,3);
+    testTree.insert(&five,5);
     return ((testTree.getRoot()->height == 2) && (testTree.getRoot()->data == 5));
 }
 
@@ -87,14 +87,14 @@ bool BinarySearchTreeTests::leftZigZagTest() {
  */
 bool BinarySearchTreeTests::leftZigZigTest(){
     AVLTree<TestThread, int> testTree;
-    TestThread* nine = new TestThread(9,9);
-    TestThread* six = new TestThread(6,6);
-    TestThread* three = new TestThread(3,3);
+    TestThread nine (9,9);
+    TestThread six (6,6);
+    TestThread three (3,3);
 
     
-    testTree.insert(nine,9);
-    testTree.insert(six,6);
-    testTree.insert(three,3);
+    testTree.insert(&nine,9);
+    testTree.insert(&six,6);
+    testTree.insert(&three,3);
     return ((testTree.getRoot()->height == 2) && (testTree.getRoot()->data == 6));
     
 }
@@ -104,12 +104,12 @@ bool BinarySearchTreeTests::leftZigZigTest(){
  */
 bool BinarySearchTreeTests::deleteLeafTest() {
     AVLTree<TestThread, int> testTree;
-    TestThread* five = new TestThread(5,5);
-    TestThread* six = new TestThread(6,6);
+    TestThread five (5,5);
+    TestThread six (6,6);
 
-    testTree.insert(five,5);
-    testTree.insert(six, 6);
-    testTree.remove(six,6);
+    testTree.insert(&five,5);
+    testTree.insert(&six, 6);
+    testTree.remove(&six,6);
     return ((testTree.getRoot()->height == 1) && (testTree.getRoot()->data == 5));
 }
 
@@ -119,33 +119,33 @@ bool BinarySearchTreeTests::deleteLeafTest() {
  */
 bool BinarySearchTreeTests::bigTreeTest(){
     AVLTree<TestThread, int> testTree;
-    TestThread* thirty = new TestThread(30,30);
-    TestThread* six = new TestThread(6,6);
-    TestThread* fortyfive = new TestThread(45,45);
-    TestThread* nine = new TestThread(9,9);
-    TestThread* four = new TestThread(4,4);
-    TestThread* three = new TestThread(3,3);
-    TestThread* fifty = new TestThread(50,50);
-    TestThread* hundred = new TestThread(100,100);
-    TestThread* one = new TestThread(1,1);
-    TestThread* fifteen = new TestThread(15,15);
+    TestThread thirty (30,30);
+    TestThread six (6,6);
+    TestThread fortyfive (45,45);
+    TestThread nine (9,9);
+    TestThread four (4,4);
+    TestThread three (3,3);
+    TestThread fifty (50,50);
+    TestThread hundred (100,100);
+    TestThread one (1,1);
+    TestThread fifteen (15,15);
 
     
-    testTree.insert(thirty,30);
-    testTree.insert(six,6);
-    testTree.insert(fortyfive,45);
-    testTree.insert(nine,9);
-    testTree.insert(four,4);
-    testTree.insert(three,3);
-    testTree.insert(fifty,50);
-    testTree.insert(hundred,100);
-    testTree.insert(one,1);
-    testTree.insert(thirty,30);
-    testTree.insert(fifteen,15);
-    testTree.remove(fortyfive,45);
-    testTree.remove(one,1);
-    testTree.remove(thirty,30);
-    testTree.remove(four,4);
+    testTree.insert(&thirty,30);
+    testTree.insert(&six,6);
+    testTree.insert(&fortyfive,45);
+    testTree.insert(&nine,9);
+    testTree.insert(&four,4);
+    testTree.insert(&three,3);
+    testTree.insert(&fifty,50);
+    testTree.insert(&hundred,100);
+    testTree.insert(&one,1);
+    testTree.insert(&thirty,30);
+    testTree.insert(&fifteen,15);
+    testTree.remove(&fortyfive,45);
+    testTree.remove(&one,1);
+    testTree.remove(&thirty,30);
+    testTree.remove(&four,4);
     return ((testTree.getRoot()->height==4) && (testTree.getRoot()->data == 30));
 }
 

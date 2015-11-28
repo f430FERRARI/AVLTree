@@ -1,11 +1,3 @@
-//
-//  BinarySearchTreeTests.h
-//  BinarySearchTree
-//
-//  Created by Michael Lee on 2015-11-19.
-//  Copyright © 2015 Michael Lee. All rights reserved.
-//
-
 #ifndef BinarySearchTreeTests_h
 #define BinarySearchTreeTests_h
 

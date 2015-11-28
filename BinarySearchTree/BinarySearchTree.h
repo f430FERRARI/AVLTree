@@ -11,6 +11,7 @@ struct TreeNode {
     TreeNode* parent;
 };
 
+
 template<class T, class S>
 class AVLTree {
 private:
@@ -37,10 +38,12 @@ public:
     }
 };
 
+
 template <class T, class S>
 TreeNode<T,S>* AVLTree<T,S>::getRoot(){
     return root;
 }
+
 
 template <class T, class S>
 TreeNode<T,S>* AVLTree<T,S>::getNode(T* objectToFind, S data, TreeNode<T,S>* currentNode){
@@ -55,6 +58,7 @@ TreeNode<T,S>* AVLTree<T,S>::getNode(T* objectToFind, S data, TreeNode<T,S>* cur
     }
 }
 
+
 template <class T, class S>
 T* AVLTree<T,S>::readMinNode() {
     TreeNode<T,S>* currentNode = root;
@@ -63,6 +67,7 @@ T* AVLTree<T,S>::readMinNode() {
     }
     return currentNode->obj;
 }
+
 
 template <class T, class S>
 T* AVLTree<T,S>::popMinNode() {
@@ -74,6 +79,7 @@ T* AVLTree<T,S>::popMinNode() {
     remove(currentNode->obj, currentNode->data);
     return output;
 }
+
 
 template <class T, class S>
 void AVLTree<T,S>::insert(T* obj, S data) {
@@ -90,6 +96,7 @@ void AVLTree<T,S>::insert(T* obj, S data) {
     
     balance(nodeToInsert);
 }
+
 
 template <class T, class S>
 void AVLTree<T,S>::adder(TreeNode<T,S>* nodeToInsert, TreeNode<T,S>* currentNode) {
@@ -110,6 +117,7 @@ void AVLTree<T,S>::adder(TreeNode<T,S>* nodeToInsert, TreeNode<T,S>* currentNode
     }
 }
 
+
 template <class T, class S>
 void AVLTree<T,S>::remove(T* obj, S data) {
     TreeNode<T,S>* nodeToRemove = getNode(obj, data, root);
@@ -129,6 +137,7 @@ void AVLTree<T,S>::remove(T* obj, S data) {
     
     balance(nodeToRemove->parent);
 }
+
 
 template <class T, class S>
 void AVLTree<T,S>::removeLeaf(TreeNode<T,S>* nodeToRemove) {
@@ -177,7 +186,7 @@ void AVLTree<T,S>::removeLeft(TreeNode<T,S>* nodeToRemove) {
     delete nodeToRemove;
 }
 
-//TODO: !!!!!!!!
+
 template <class T, class S>
 void AVLTree<T,S>::removeBoth(TreeNode<T,S>* nodeToRemove) {
     //Find a valid node to swap with the node to remove
@@ -256,6 +265,7 @@ int AVLTree<T,S>::getHeight(TreeNode<T,S>* node) {
     }
 }
 
+
 template <class T, class S>
 void AVLTree<T,S>::rotateRight(TreeNode<T,S>* nodeToRotate) {
     //Place new root into a temporary node
@@ -290,6 +300,7 @@ void AVLTree<T,S>::rotateRight(TreeNode<T,S>* nodeToRotate) {
         nodeToRotate->height = rightHeight + 1;
     }
 }
+
 
 template <class T, class S>
 void AVLTree<T,S>::rotateLeft(TreeNode<T,S>* nodeToRotate) {
