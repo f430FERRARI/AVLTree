@@ -4,7 +4,7 @@
 template<class T, class S>
 struct TreeNode {
     T* obj;
-    S data;
+    S data;             //Comparison key
     int height;
     TreeNode* left;
     TreeNode* right;
@@ -83,11 +83,14 @@ T* AVLTree<T,S>::popMinNode() {
 
 template <class T, class S>
 void AVLTree<T,S>::insert(T* obj, S data) {
+    
+    //Create a TreeNode to be inserted
     TreeNode<T,S>* nodeToInsert = new TreeNode<T,S>();
     nodeToInsert->obj = obj;
     nodeToInsert->data = data;
     nodeToInsert->left = nodeToInsert->right = NULL;
     
+    //Insert the TreeNode into the tree
     if (root == NULL){
         root = nodeToInsert;
     } else {
@@ -243,7 +246,7 @@ void AVLTree<T,S>::balance(TreeNode<T,S>* nodeToBalance) {
             rotateLeft(nodeToBalance->left);
             rotateRight(nodeToBalance);
         }
-        //Update height of node to balance
+    //Update height of node to balance
     } else {
         if (leftHeight >= rightHeight) {
             nodeToBalance->height = leftHeight + 1;

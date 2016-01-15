@@ -5,7 +5,7 @@
 
 using namespace std;
 
-/* 
+/*  
  Expected output: readMinNode = 1
  */
 bool BinarySearchTreeTests::readMinNodeTest() {
@@ -117,7 +117,7 @@ bool BinarySearchTreeTests::deleteLeafTest() {
 /*
  Expected output: Root = 30, height = 4
  */
-bool BinarySearchTreeTests::bigTreeTest(){
+bool BinarySearchTreeTests::bigTreeInsertDeleteAllCasesTest(){
     AVLTree<TestThread, int> testTree;
     TestThread thirty (30,30);
     TestThread six (6,6);
@@ -157,5 +157,5 @@ void BinarySearchTreeTests::runTests() {
     leftZigZagTest() ? cout << "Pass" << endl : cout << "leftZigZagTest Fail" << endl;
     leftZigZigTest() ? cout << "Pass" << endl : cout << "leftZigZigTest Fail" << endl;
     deleteLeafTest() ? cout << "Pass" << endl : cout << "deleteLeafTest Fail" << endl;
-    bigTreeTest() ? cout << "Pass" << endl : cout << "bigTreeTest Fail" << endl;
+    bigTreeInsertDeleteAllCasesTest() ? cout << "Pass" << endl : cout << "bigTreeTest Fail" << endl;
 }

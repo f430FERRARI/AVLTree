@@ -10,7 +10,7 @@ namespace BinarySearchTreeTests {
     bool leftZigZagTest();
     bool leftZigZigTest();
     bool deleteLeafTest();
-    bool bigTreeTest();
+    bool bigTreeInsertDeleteAllCasesTest();
     void runTests();
     
 }
